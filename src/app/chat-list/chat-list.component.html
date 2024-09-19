@@ -1,0 +1,66 @@
+<div class="chat-list">
+  <div class="first">
+    <div class="user-profil">
+      <figure class="avatar">
+        <img [src]="user.avatar || 'avatar.png'" alt="avatar" />
+      </figure>
+      <div class="user-name">{{ user.username | titlecase }}</div>
+    </div>
+    <div class="icons">
+      <div class="three-dot icon">
+        <img src="more.png" alt="more" />
+      </div>
+      <div class="video icon">
+        <img src="video.png" alt="video" />
+      </div>
+      <div class="edit icon">
+        <img src="edit.png" alt="edit" />
+      </div>
+    </div>
+  </div>
+  <div class="second">
+    <div class="search-input">
+      <div class="search icon">
+        <img src="search.png" alt="search" />
+      </div>
+      <input
+        class="input"
+        type="text"
+        placeholder="Search"
+        ngModel
+        #searchInput="ngModel"
+      />
+    </div>
+    <div class="add icon" (click)="toggleAddMode()">
+      <img [src]="!addMode ? 'plus.png' : 'minus.png'" />
+    </div>
+  </div>
+  <div class="third">
+    <div class="chats">
+      @for (chat of filteredChats; track $index) {
+        @let active = activeChat?.messagesId === chat.messagesId;
+        <div
+          class="chat"
+          [ngClass]="{ unread: !(chat?.isRead ?? true) && !active, active }"
+          (click)="onChatActivated(chat)"
+        >
+          <figure class="avatar">
+            <img
+              [src]="chat.correspondent.avatar || 'avatar.png'"
+              alt="avatar"
+            />
+          </figure>
+          <div class="chat-info">
+            <div class="contact-name">
+              {{ chat.correspondent.username | titlecase }}
+            </div>
+            <div class="last-message">{{ chat.lastMessage }}</div>
+          </div>
+        </div>
+      }
+    </div>
+    @if (!filteredChats.length) {
+    <div class="placeholder">Your chats are displayed here.</div>
+    }
+  </div>
+</div>

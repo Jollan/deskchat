@@ -1,0 +1,44 @@
+.container {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  backdrop-filter: blur(20px) saturate(180%);
+  border-radius: 5px;
+  background-color: #111928bf;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  .section,
+  .login-area {
+    height: 100%;
+  }
+  .chat-list.section,
+  .chat-settings.section {
+    width: 25%;
+  }
+  .chat-area.section {
+    width: 50%;
+  }
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+  }
+  .placeholder {
+    width: 75%;
+    .content {
+      width: 50%;
+      margin: auto;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #ffffff33;
+    }
+  }
+
+  .login-area {
+    width: 100%;
+  }
+}

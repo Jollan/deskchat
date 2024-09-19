@@ -1,0 +1,75 @@
+.sb {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 368px;
+  bottom: 10px;
+  padding: 13px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 5s;
+  animation: fadein 0.5s, fadeout 0.5s 5s;
+}
+
+.error {
+  background-color: #e74c3c;
+  color: #fff;
+}
+.success {
+  background-color: #1abc9c;
+  color: #28282b;
+}
+.warning {
+  background-color: #f3c220;
+  color: #28282b;
+}
+
+.info {
+  background-color: #089db8;
+  color: #28282b;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 10px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 10px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 10px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 10px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}

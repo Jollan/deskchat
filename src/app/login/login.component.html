@@ -1,0 +1,134 @@
+<div class="container">
+  @let loaded = loaded$ | async;
+  <form
+    class="login"
+    #loginForm="ngForm"
+    (ngSubmit)="operationType = 'login'; onFormSubmitted(loginForm)"
+  >
+    <h3>Welcome back</h3>
+    <div class="field">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="on"
+        required
+        email
+        ngModel
+        #l_email="ngModel"
+      />
+      <ng-container *ngIf="l_email.invalid && l_email.touched">
+        @if (l_email.errors?.['required']) {
+        <span>You must enter a value !</span>
+        } @else {
+        <span>Enter a valid email !</span>
+        }
+      </ng-container>
+    </div>
+    <div class="field">
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+        minlength="8"
+        ngModel
+        #l_password="ngModel"
+      />
+      <ng-container *ngIf="l_password.invalid && l_password.touched">
+        @if (l_password.errors?.['required']) {
+        <span>You must enter a value !</span>
+        } @else {
+        <span> At least 8 characters !</span>
+        }
+      </ng-container>
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid || !loaded">
+      {{ loaded ? "Login" : "Loading..." }}
+    </button>
+  </form>
+  <hr />
+  <form
+    class="register"
+    #registerForm="ngForm"
+    (ngSubmit)="operationType = 'register'; onFormSubmitted(registerForm)"
+  >
+    <h3>Create an Account</h3>
+    <div class="avatar">
+      <img [src]="avatarDisplayUrl || ' avatar.png'" alt="avatar" />
+      <label class="input">
+        Upload an avatar
+        <input
+          type="file"
+          hidden
+          accept="image/*"
+          (change)="onFileSelected($event)"
+        />
+      </label>
+    </div>
+    <div class="field">
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        autocomplete="on"
+        required
+        ngModel
+        #username="ngModel"
+      />
+      <ng-container *ngIf="username.invalid && username.touched">
+        <span>You must enter a value !</span>
+      </ng-container>
+    </div>
+    <div class="field">
+      <input
+        type="text"
+        name="about"
+        placeholder="About you"
+        autocomplete="on"
+        maxlength="30"
+        ngModel
+      />
+    </div>
+    <div class="field">
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocomplete="on"
+        required
+        email
+        ngModel
+        #email="ngModel"
+      />
+      <ng-container *ngIf="email.invalid && email.touched">
+        @if (email.errors?.['required']) {
+        <span>You must enter a value !</span>
+        } @else {
+        <span>Enter a valid email !</span>
+        }
+      </ng-container>
+    </div>
+    <div class="field">
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+        minlength="8"
+        ngModel
+        #password="ngModel"
+      />
+      <ng-container *ngIf="password.invalid && password.touched">
+        @if (password.errors?.['required']) {
+        <span>You must enter a value !</span>
+        } @else {
+        <span> At least 8 characters !</span>
+        }
+      </ng-container>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid || !loaded">
+      {{ loaded ? "Register" : "Loading..." }}
+    </button>
+  </form>
+</div>

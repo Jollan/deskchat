@@ -1,0 +1,92 @@
+.loader:has(.bar) {
+  position: fixed;
+  width: 100%;
+  height: 3px;
+  background-color: #e5e7eb;
+  z-index: 999;
+  .bar {
+    position: relative;
+    width: 30%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #3662e3;
+    animation: slide 0.5s linear infinite;
+    -webkit-animation: slide 0.5s linear infinite;
+  }
+}
+.loader:has(.spin) {
+  .spin {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #e5e7eb;
+    border-top: 5px solid #3662e3;
+    border-radius: 50%;
+    -webkit-animation: spin 800ms linear infinite;
+    animation: spin 800ms linear infinite;
+  }
+}
+
+.loader:has(.slide) {
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 100%;
+    background-color: #ffffff5d;
+    -webkit-animation: slide_2 ease-out 1s infinite;
+    animation: slide_2 ease-out 1s infinite;
+  }
+}
+
+@-webkit-keyframes slide_2 {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes slide_2 {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes slide {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+@-webkit-keyframes slide {
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

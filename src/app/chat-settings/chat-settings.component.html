@@ -1,0 +1,65 @@
+<div class="chat-settings">
+  <div class="contact-profil">
+    @let correspondent = activeChat.correspondent;
+    <figure class="avatar">
+      @if (activeChat.blockedHim || activeChat.blockedMe) {
+      <img src="avatar.png" alt="avatar" />
+      } @else {
+      <img [src]="correspondent?.avatar || 'avatar.png'" alt="avatar" />
+      }
+    </figure>
+    <div class="contact-name">
+      {{ correspondent?.username || "" | titlecase }}
+    </div>
+    @if (!activeChat.blockedHim && !activeChat.blockedMe) {
+    <div class="about">{{ correspondent?.about }}</div>
+    }
+  </div>
+  <div class="settings">
+    <div class="general-settings dropdown-wrapper">
+      <div class="dropdown">
+        <div class="label">General settings</div>
+      </div>
+      <div class="arrow icon">
+        <img src="arrowUp.png" alt="arrow" />
+      </div>
+    </div>
+    <div class="privacy dropdown-wrapper">
+      <div class="dropdown">
+        <div class="label">Privacy & help</div>
+      </div>
+      <div class="arrow icon">
+        <img src="arrowUp.png" alt="arrow" />
+      </div>
+    </div>
+    <div class="shared-photos dropdown-wrapper">
+      <div class="dropdown">
+        <div class="label">Shared photos</div>
+      </div>
+      <div class="arrow icon">
+        <img class="arrow" src="arrowUp.png" alt="arrowUp" />
+      </div>
+    </div>
+    <div class="shared-files dropdown-wrapper">
+      <div class="dropdown">
+        <div class="label">Shared files</div>
+      </div>
+      <div class="arrow icon">
+        <img src="arrowUp.png" alt="arrow" />
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <button
+      type="button"
+      class="block-user"
+      (click)="blockContact(!activeChat.blockedHim)"
+    >
+      {{ activeChat.blockedHim ? "Unblock user" : "Block user" }}
+    </button>
+    <button type="button" class="logout" (click)="logout()">Logout</button>
+    <button type="button" class="close-chat" (click)="closeChat()">
+      Close chat
+    </button>
+  </div>
+</div>

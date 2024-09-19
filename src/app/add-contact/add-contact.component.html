@@ -1,0 +1,34 @@
+<div class="container">
+  <h3>Add new contact</h3>
+  <div class="input-area">
+    @let prev = { keyword: '' };
+    <div class="input">
+      <input
+        type="text"
+        placeholder="Search username or email..."
+        [(ngModel)]="keyword"
+        #searchInput="ngModel"
+      />
+    </div>
+    <div class="button">
+      <button
+        type="button"
+        [disabled]="searchInput.dirty && prev.keyword === keyword"
+        (click)="search(); prev.keyword = keyword"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  <div class="search-results">
+    @if (contact) {
+    <div class="contact-profil">
+      <figure class="avatar">
+        <img [src]="contact.avatar || 'avatar.png'" alt="avatar" />
+      </figure>
+      <div class="contact-name">{{ contact.username | titlecase }}</div>
+      <div class="add" (click)="addNewContact(); added.emit()">Add</div>
+    </div>
+    }
+  </div>
+</div>

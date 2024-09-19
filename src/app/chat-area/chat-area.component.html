@@ -1,0 +1,93 @@
+<div class="chat-area">
+  <div class="top">
+    <div class="contact-profil">
+      @let correspondent = activeChat.correspondent;
+      <figure class="avatar">
+        @if (activeChat.blockedHim || activeChat.blockedMe) {
+        <img src="avatar.png" alt="avatar" />
+        } @else {
+        <img [src]="correspondent?.avatar || 'avatar.png'" alt="avatar" />
+        }
+      </figure>
+      <div class="contact-info">
+        <div class="name">{{ correspondent?.username ?? "" | titlecase }}</div>
+        @if (!activeChat.blockedHim && !activeChat.blockedMe) {
+        <div class="about">{{ correspondent?.about }}</div>
+        }
+      </div>
+    </div>
+    <div class="icons">
+      <div class="phone icon">
+        <img src="phone.png" alt="phone" />
+      </div>
+      <div class="video icon">
+        <img src="video.png" alt="video" />
+      </div>
+      <div class="info icon">
+        <img src="info.png" alt="info" />
+      </div>
+    </div>
+  </div>
+  <div class="middle">
+    @for (message of chatMessages.messages; track $index) {
+    <div class="message" [ngClass]="{ own: message.senderId === user.uid }">
+      <figure class="avatar">
+        <img [src]="correspondent?.avatar || 'avatar.png'" alt="avatar" />
+      </figure>
+      <div class="message-info">
+        <div [class]="message.text ? 'text' : 'image'">
+          @if (message.image) {
+          <app-image-loader
+            [src]="message.image"
+            alt="photo"
+          ></app-image-loader>
+          }@else {
+          <p>{{ message.text }}</p>
+          }
+        </div>
+        @let time = message.createdAt.toDate?.() ?? message.createdAt;
+        <div class="time">{{ time | timeago }}</div>
+      </div>
+    </div>
+    }
+    <div #ref></div>
+  </div>
+  <div class="bottom">
+    <div class="icons">
+      <label class="gallery icon">
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          (change)="onImageSelected($event)"
+        />
+        <img src="img.png" alt="img" />
+      </label>
+      <div class="camera icon">
+        <img src="camera.png" alt="camera" />
+      </div>
+      <div class="microphone icon">
+        <img src="mic.png" alt="microphone" />
+      </div>
+    </div>
+    <div class="message-input">
+      <textarea placeholder="Type a message" [(ngModel)]="input"></textarea>
+    </div>
+    <div class="emoji icon">
+      @let emojiPicker = { show: false };
+      <img
+        src="emoji.png"
+        alt="emoji"
+        (click)="emojiPicker.show = !emojiPicker.show"
+      />
+      <emoji-mart
+        [hidden]="!emojiPicker.show"
+        [style]="{ position: 'absolute', bottom: '30px', right: '0' }"
+        (emojiClick)="addEmoji($event)"
+      ></emoji-mart>
+    </div>
+    <div class="send button">
+      <button type="button" (click)="send()">Send</button>
+    </div>
+  </div>
+</div>

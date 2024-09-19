@@ -1,0 +1,120 @@
+.chat-area {
+  height: 100%;
+  border-right: 1px solid #dddddd35;
+  display: flex;
+  flex-direction: column;
+  .top {
+    border-bottom: 1px solid #dddddd35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    .contact-profil {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .contact-info {
+        .name {
+          font-weight: bold;
+        }
+        .about {
+          font-size: small;
+        }
+      }
+    }
+  }
+
+  .middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .message-info {
+      .image,
+      .text {
+        padding: 5px;
+        background-color: rgba(17, 25, 40, 0.75);
+        border-radius: 5px;
+      }
+      .image {
+        width: 300px;
+      }
+      .text {
+        max-width: 300px;
+      }
+      p {
+        width: 100%;
+      }
+      .time {
+        font-size: x-small;
+      }
+    }
+    .message {
+      padding: 5px 0;
+      display: flex;
+      gap: 10px;
+      .avatar {
+        img {
+          width: 20px;
+          height: 20px;
+        }
+      }
+      &.own {
+        justify-content: end;
+        .avatar {
+          display: none;
+        }
+        .message-info {
+          .text,
+          .image {
+            background-color: rgb(58, 96, 223);
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    border-top: 1px solid #dddddd35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 5px;
+    > * {
+      padding: 0 5px;
+    }
+    .message-input {
+      flex: 1;
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 0;
+        outline: 0;
+        border-radius: 5px;
+        background-color: rgba(17, 25, 40, 0.75);
+        color: #fff;
+      }
+    }
+    .gallery,
+    .emoji,
+    button {
+      cursor: pointer;
+    }
+    .emoji {
+      position: relative;
+    }
+    .button {
+      button {
+        padding: 5px 15px;
+        border: 0;
+        border-radius: 5px;
+        background-color: rgb(58, 96, 223);
+        color: #fff;
+      }
+    }
+  }
+}

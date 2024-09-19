@@ -1,0 +1,30 @@
+@if (alertService.message() && hideSnackbar()) {
+  @let message = alertService.message()!;
+  <app-snackbar [message]="message.content" [type]="message.type"></app-snackbar>
+}
+<div class="container">
+  @if (user) {
+  <section class="chat-list section">
+    <app-chat-list #chatList></app-chat-list>
+  </section>
+  @if (activeChat$ | async) {
+  <section class="chat-area section">
+    <app-chat-area></app-chat-area>
+  </section>
+  <section class="chat-settings section">
+    <app-chat-settings></app-chat-settings>
+  </section>
+  } @else {
+  <div class="placeholder">
+    <p class="content">Select a chat to start a conversation.</p>
+  </div>
+  }
+  <div *ngIf="chatList.addMode" class="modal">
+    <app-add-contact (added)="chatList.addMode = false"></app-add-contact>
+  </div>
+  } @else {
+  <div class="login-area">
+    <app-login></app-login>
+  </div>
+  }
+</div>
